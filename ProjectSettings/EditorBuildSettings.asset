@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Photon Unity Networking/Demos/MarcoPolo-Tutorial/MarcoPolo-Scene.unity
+    guid: 4edb89b81eea36243978d62c589e60ad
   m_configObjects: {}
