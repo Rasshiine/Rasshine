@@ -32,10 +32,12 @@ public class SimplePun : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         //キャラクターを生成
+
         GameObject monster = PhotonNetwork.Instantiate(cube.name, Vector3.zero, Quaternion.identity, 0);
+
         //自分だけが操作できるようにスクリプトを有効にする
-       // MonsterScript monsterScript = monster.GetComponent<MonsterScript>();
-       // monsterScript.enabled = true;
+       MonsterScript monsterScript = monster.GetComponent<MonsterScript>();
+       monsterScript.enabled = true;
     }
     
 
