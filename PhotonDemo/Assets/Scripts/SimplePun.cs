@@ -2,11 +2,12 @@
 using System.Collections;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine.UI;
 
 public class SimplePun : MonoBehaviourPunCallbacks
 {
     public GameObject cube;
-
+    public Button button;
     // Use this for initialization
     void Start()
     {
@@ -38,6 +39,7 @@ public class SimplePun : MonoBehaviourPunCallbacks
         //自分だけが操作できるようにスクリプトを有効にする
        MonsterScript monsterScript = monster.GetComponent<MonsterScript>();
        monsterScript.enabled = true;
+        monsterScript.shotButton = button;
     }
     
 

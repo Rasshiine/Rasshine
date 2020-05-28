@@ -14,9 +14,6 @@ ScriptsOnlyBuild:
     - Photon.Pun.Demo.PunBasics.PlayerUI
     - Photon.Pun.Demo.SlotRacer.PlayerControl
     - Photon.Pun.Demo.SlotRacer.Utils.SplineWalker
-    PhotonUnityNetworking.Editor.dll:
-    - Photon.Pun.PhotonTransformViewEditor
-    - Photon.Pun.PhotonViewInspector
     PhotonUnityNetworking.dll:
     - Photon.Pun.PhotonAnimatorView
     - Photon.Pun.PhotonRigidbodyView
@@ -25,8 +22,6 @@ ScriptsOnlyBuild:
     - Photon.Pun.ServerSettings
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.TestListCacheData
-    UnityEditor.UI.dll:
-    - UnityEditor.UI.SliderEditor
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
@@ -900,7 +895,7 @@ ScriptsOnlyBuild:
     className: AnalyticsTracker
   - hash:
       serializedVersion: 2
-      Hash: 6fd0783cadbbf2261bab070bbc805fcb
+      Hash: 497527fc90d10b65fd70369515cb1072
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MonsterScript
@@ -1170,7 +1165,7 @@ ScriptsOnlyBuild:
     className: SetRoomCustomPropertyUIForm
   - hash:
       serializedVersion: 2
-      Hash: 6fd0783cadbbf2261bab070bbc805fcb
+      Hash: 497527fc90d10b65fd70369515cb1072
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MonsterScript
@@ -1194,7 +1189,7 @@ ScriptsOnlyBuild:
     className: ToggleExpand
   - hash:
       serializedVersion: 2
-      Hash: a366b8e3384e3c5509b46c3b7a2450b3
+      Hash: 581f339fe5b1dd270cdef143a2f516a8
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SimplePun
