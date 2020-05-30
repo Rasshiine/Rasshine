@@ -39,7 +39,7 @@ public class SimplePun : MonoBehaviourPunCallbacks
         //自分だけが操作できるようにスクリプトを有効にする
        MonsterScript monsterScript = monster.GetComponent<MonsterScript>();
        monsterScript.enabled = true;
-        monsterScript.shotButton = button;
+       monsterScript.shotButton = button;
     }
     
 
