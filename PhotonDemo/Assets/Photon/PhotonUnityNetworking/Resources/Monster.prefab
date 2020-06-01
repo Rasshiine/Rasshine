@@ -405,11 +405,13 @@ MonoBehaviour:
   muzzle: {fileID: 4126504906063959946}
   speed: 5
   HP: 5
-  maxMP: 30
+  maxMP: 1000
   currentMP: 0
   slider: {fileID: 3796014287260462914}
-  MP: {fileID: 1665053626878620759}
+  MP: {fileID: 7995663409335777752}
   shotButton: {fileID: 8052392765252548609, guid: 8373ae00bf8d74be8954b8e84c2ddc8a,
+    type: 3}
+  tripleShotButton: {fileID: 2413960554900397961, guid: f58e204a8c6a046ef9a11482875815e3,
     type: 3}
 --- !u!1 &3028729074845107132
 GameObject:
@@ -868,7 +870,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 6610956446775142903}
+  - {fileID: 7995663409335777797}
   m_Father: {fileID: 1989448975384326028}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1066,7 +1068,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 001b945b21b254b51a9aae2ad798b7fe, type: 3}
---- !u!114 &1665053626878620759 stripped
+--- !u!114 &7995663409335777752 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8785741058544717743, guid: 001b945b21b254b51a9aae2ad798b7fe,
     type: 3}
@@ -1078,7 +1080,7 @@ MonoBehaviour:
   m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &6610956446775142903 stripped
+--- !u!224 &7995663409335777797 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3839486214555062799, guid: 001b945b21b254b51a9aae2ad798b7fe,
     type: 3}

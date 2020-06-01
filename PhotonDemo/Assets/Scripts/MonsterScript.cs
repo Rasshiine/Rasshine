@@ -4,20 +4,22 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 
-public class MonsterScript : Photon.MonoBehaviour
+public class MonsterScript : MonoBehaviourPunCallbacks
 {
 
-    #region IPunObservable implementation
+    //#region IPunObservable implementation
 
     public GameObject bullet;
     public Transform muzzle;
     public float speed = 5.0f;
-    public int HP = 5;
+    public float HP = 5;
     public float maxMP = 1000;
     public float currentMP = 0;
     public Slider slider;
     public Slider MP;
     public Button shotButton;
+    public Button tripleShotButton;
+
     private Animator animator;
 
 
@@ -36,7 +38,7 @@ public class MonsterScript : Photon.MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(currentMP);
+        //Debug.Log(currentMP);
         MP.value = currentMP; //  / maxMP;
         if (currentMP >= maxMP)
         {
@@ -88,11 +90,23 @@ public class MonsterScript : Photon.MonoBehaviour
     {
         if (currentMP >= 200)
         {
-            // Debug.Log(this.transform.position.x);
+            Debug.Log(this.transform.position.x);
             GameObject obj = PhotonNetwork.Instantiate(bullet.name, muzzle.position, muzzle.rotation) as GameObject;
             obj.GetComponent<Rigidbody>().velocity = transform.forward * speed;
             // Destroy(bullet, 1);
             currentMP -= 200;
+        }
+    }
+
+    public void TripleShot()
+    {
+        if (currentMP >= 300)
+        {
+             Debug.Log(this.transform.position.x);
+            GameObject obj = PhotonNetwork.Instantiate(bullet.name, muzzle.position, muzzle.rotation) as GameObject;
+            obj.GetComponent<Rigidbody>().velocity = transform.forward * speed;
+            // Destroy(bullet, 1);
+            currentMP -= 300;
         }
     }
 
@@ -103,6 +117,15 @@ public class MonsterScript : Photon.MonoBehaviour
         slider.value = HP;
        // Destroy(bullet);
     }
-
+    public void onPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(HP);
+        } else
+        {
+            this.HP = (float)stream.ReceiveNext();
+        }
+    }
     
 }

@@ -23,7 +23,7 @@ MonoBehaviour:
   m_MinSize: {x: 913, y: 444}
   m_MaxSize: {x: 22008, y: 14044}
   vertical: 1
-  controlID: 100
+  controlID: 15647
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -73,7 +73,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 1
+    m_EnableMouseInput: 0
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_MinSize: {x: 913, y: 444}
   m_MaxSize: {x: 22008, y: 14044}
   vertical: 0
-  controlID: 101
+  controlID: 15648
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -154,7 +154,7 @@ MonoBehaviour:
   m_MinSize: {x: 202, y: 444}
   m_MaxSize: {x: 4002, y: 8044}
   vertical: 1
-  controlID: 102
+  controlID: 15649
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -174,8 +174,8 @@ MonoBehaviour:
     y: 0
     width: 238
     height: 448
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 222}
+  m_MaxSize: {x: 4002, y: 4022}
   m_ActualView: {fileID: 6}
   m_Panes:
   - {fileID: 6}
@@ -218,9 +218,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -0.0152544975, y: 2.4774425, z: -1.2599611}
+    m_Target: {x: 80, y: 54, z: 0}
     speed: 2
-    m_Value: {x: -0.0152544975, y: 2.4774425, z: -1.2599611}
+    m_Value: {x: 80, y: 54, z: 0}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -253,9 +253,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: -0.08717229, y: 0.89959055, z: -0.21045254, w: -0.3726226}
   m_Size:
-    m_Target: 14.6346445
+    m_Target: 266.0545
     speed: 2
-    m_Value: 14.6346445
+    m_Value: 266.0545
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -356,7 +356,7 @@ MonoBehaviour:
   m_MinSize: {x: 711, y: 394}
   m_MaxSize: {x: 18006, y: 14044}
   vertical: 1
-  controlID: 124
+  controlID: 15541
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -382,7 +382,7 @@ MonoBehaviour:
   m_MinSize: {x: 711, y: 272}
   m_MaxSize: {x: 18006, y: 10022}
   vertical: 0
-  controlID: 125
+  controlID: 15628
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -440,21 +440,21 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 6668ffffa468ffff986affff1c9dffff6ca1ffff3eabffff82abffff80adffff08b8ffff4cb8ffff44baffffc0c5ffffcac5ffffecc5ffff3af3ffff78f3ffff6cf5ffff8efbffff6c4a0000
+      m_ExpandedIDs: 508efeff928efeff8c90feff94a7feffbaa7feffc4a7feffdca7fefffcfefeff08fffeff14fffeff5e09ffff9c09ffff900bffff5230ffff9030ffff8432fffff859ffff085affff265affffd05affff165bffff145dffff6668ffffa468ffff986affff1c9dffff6ca1ffff3eabffff82abffff80adffff08b8ffff4cb8ffff44baffffc0c5ffffcac5ffffecc5ffff3af3ffff78f3ffff6cf5ffff8efbffff6c4a0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
+        m_Name: Monster(Clone)
+        m_OriginalName: Monster(Clone)
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 0
+        m_UserData: -88100
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 11
+        m_OriginalEventType: 0
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 11}
       m_SearchString: 
@@ -540,7 +540,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 9a340000
     m_LastClickedID: 13466
-    m_ExpandedIDs: 00000000dc2a00002a2b0000942b0000da2b0000282c0000ae2e00005a2f00006c2f0000ee2f0000
+    m_ExpandedIDs: ffffffff00000000dc2a00002a2b0000942b0000da2b0000282c0000ae2e00005a2f00006c2f0000ee2f0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -571,18 +571,18 @@ MonoBehaviour:
     m_ExpandedIDs: ffffffff00000000dc2a00002a2b0000942b0000da2b0000282c0000ae2e00005a2f00006c2f0000ee2f0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: Monster
+      m_OriginalName: Monster
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 12140
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 13}
     m_SearchString: 
@@ -642,8 +642,8 @@ MonoBehaviour:
     y: 0
     width: 277
     height: 575
-  m_MinSize: {x: 277, y: 72}
-  m_MaxSize: {x: 4002, y: 4022}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 16}
@@ -731,8 +731,8 @@ MonoBehaviour:
     y: 575
     width: 712
     height: 275
-  m_MinSize: {x: 102, y: 122}
-  m_MaxSize: {x: 4002, y: 4022}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}

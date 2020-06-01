@@ -8,6 +8,7 @@ public class SimplePun : MonoBehaviourPunCallbacks
 {
     public GameObject cube;
     public Button button;
+    public Button tripleButton;
     // Use this for initialization
     void Start()
     {
@@ -40,6 +41,7 @@ public class SimplePun : MonoBehaviourPunCallbacks
        MonsterScript monsterScript = monster.GetComponent<MonsterScript>();
        monsterScript.enabled = true;
        monsterScript.shotButton = button;
+       monsterScript.tripleShotButton = tripleButton;
     }
     
 
