@@ -40,6 +40,7 @@ public class MonsterScript : MonoBehaviourPunCallbacks
     {
         //Debug.Log(currentMP);
         MP.value = currentMP; //  / maxMP;
+        slider.value = HP;
         if (currentMP >= maxMP)
         {
             currentMP = maxMP;
@@ -112,9 +113,13 @@ public class MonsterScript : MonoBehaviourPunCallbacks
 
     void OnCollisionEnter(Collision other)
     {
+        if (photonView.IsMine == true && PhotonNetwork.IsConnected == true)
+        {
+            return;
+        }
         Debug.Log("collision");
         HP--;
-        slider.value = HP;
+        
        // Destroy(bullet);
     }
     public void onPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)

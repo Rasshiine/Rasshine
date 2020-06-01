@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using Photon.Pun;
 
-public class BulletScript : MonoBehaviour
+public class BulletScript : MonoBehaviourPunCallbacks
 {
     // Start is called before the first frame update
     void Start()
@@ -18,6 +20,10 @@ public class BulletScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
+        if (photonView.IsMine == false && PhotonNetwork.IsConnected == true)
+        {
+            return;
+        }
         Destroy(gameObject);
     }
 }
