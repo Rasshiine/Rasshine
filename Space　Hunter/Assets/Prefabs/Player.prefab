@@ -674,16 +674,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d2d753c7c1604f9698bc9a0f1da297a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 1842420831239892224, guid: 1511aaf1370cb434aa25d15d084e7bec, type: 3}
+  straightBullet: {fileID: 1842420831239892224, guid: 1511aaf1370cb434aa25d15d084e7bec,
+    type: 3}
+  curveBullet: {fileID: 1842420831239892224, guid: 13b9bd3b3fe8341aca82b872d63e9c28,
+    type: 3}
   muzzle: {fileID: 3891077205386257522}
   speed: 5
+  bulletSpeed: 1.5
   HP: 5
   maxMP: 1000
   currentMP: 0
+  id: 0
   HPSlider: {fileID: 3891077205564716496}
   MPSlider: {fileID: 3891077204897758033}
-  shotButton: {fileID: 0}
-  tripleShotButton: {fileID: 0}
 --- !u!1 &3891077205706660514
 GameObject:
   m_ObjectHideFlags: 0

@@ -287,13 +287,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0.41193333, y: -0, z: -0, w: 0.91121393}
+  m_LocalPosition: {x: 0, y: 7.84, z: -5.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 48.653004, y: 0, z: 0}
 --- !u!1001 &1498382429
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -385,6 +385,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891077205313854588, guid: 3b88a430cc426432d8427ad827bb14af,
+        type: 3}
+      propertyPath: m_Name
+      value: HPSliderCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 3891077204897758038, guid: 3b88a430cc426432d8427ad827bb14af,
         type: 3}
@@ -536,6 +541,12 @@ PrefabInstance:
       propertyPath: maxMP
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 3891077205584585226, guid: 3b88a430cc426432d8427ad827bb14af,
+        type: 3}
+      propertyPath: curveBullet
+      value: 
+      objectReference: {fileID: 1842420831239892224, guid: 13b9bd3b3fe8341aca82b872d63e9c28,
+        type: 3}
     - target: {fileID: 3891077205466918359, guid: 3b88a430cc426432d8427ad827bb14af,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -549,6 +560,51 @@ PrefabInstance:
     - target: {fileID: 3891077206045754546, guid: 3b88a430cc426432d8427ad827bb14af,
         type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891077205313854591, guid: 3b88a430cc426432d8427ad827bb14af,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891077205313854591, guid: 3b88a430cc426432d8427ad827bb14af,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891077205313854591, guid: 3b88a430cc426432d8427ad827bb14af,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891077205313854591, guid: 3b88a430cc426432d8427ad827bb14af,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891077205313854591, guid: 3b88a430cc426432d8427ad827bb14af,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891077205313854588, guid: 3b88a430cc426432d8427ad827bb14af,
+        type: 3}
+      propertyPath: m_Name
+      value: HPSliderCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891077205564716497, guid: 3b88a430cc426432d8427ad827bb14af,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891077205564716497, guid: 3b88a430cc426432d8427ad827bb14af,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891077205564716497, guid: 3b88a430cc426432d8427ad827bb14af,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
