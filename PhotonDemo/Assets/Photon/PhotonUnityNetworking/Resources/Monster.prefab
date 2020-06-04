@@ -408,7 +408,7 @@ MonoBehaviour:
   maxMP: 1000
   currentMP: 0
   slider: {fileID: 3796014287260462914}
-  MP: {fileID: 7995663409335777752}
+  MP: {fileID: 1665053626878620759}
   shotButton: {fileID: 8052392765252548609, guid: 8373ae00bf8d74be8954b8e84c2ddc8a,
     type: 3}
   tripleShotButton: {fileID: 2413960554900397961, guid: f58e204a8c6a046ef9a11482875815e3,
@@ -870,7 +870,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 7995663409335777797}
+  - {fileID: 6610956446775142903}
   m_Father: {fileID: 1989448975384326028}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -950,6 +950,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MPSlider
+      objectReference: {fileID: 0}
+    - target: {fileID: 8785741058544717743, guid: 001b945b21b254b51a9aae2ad798b7fe,
+        type: 3}
+      propertyPath: m_Value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871013762186317797, guid: 001b945b21b254b51a9aae2ad798b7fe,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3839486214555062799, guid: 001b945b21b254b51a9aae2ad798b7fe,
         type: 3}
@@ -1056,19 +1066,9 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 8785741058544717743, guid: 001b945b21b254b51a9aae2ad798b7fe,
-        type: 3}
-      propertyPath: m_Value
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8871013762186317797, guid: 001b945b21b254b51a9aae2ad798b7fe,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 001b945b21b254b51a9aae2ad798b7fe, type: 3}
---- !u!114 &7995663409335777752 stripped
+--- !u!114 &1665053626878620759 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8785741058544717743, guid: 001b945b21b254b51a9aae2ad798b7fe,
     type: 3}
@@ -1080,7 +1080,7 @@ MonoBehaviour:
   m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &7995663409335777797 stripped
+--- !u!224 &6610956446775142903 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3839486214555062799, guid: 001b945b21b254b51a9aae2ad798b7fe,
     type: 3}
