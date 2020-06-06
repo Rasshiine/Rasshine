@@ -20,6 +20,7 @@ public class PlayerScript : MonoBehaviour
     float CountTime = 0.0f;
     public Slider HPSlider;
     public Slider MPSlider;
+    Rigidbody playerRb;
     Quaternion HPRotation;
     //public Button shotButton;
     //public Button tripleShotButton;
@@ -27,6 +28,7 @@ public class PlayerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerRb = GetComponent<Rigidbody>();
         HPSlider.maxValue = HP;
         HPSlider.value = HP;
         MPSlider.maxValue = maxMP;
@@ -70,8 +72,8 @@ public class PlayerScript : MonoBehaviour
         transform.Rotate(0, inputX * Time.deltaTime * 100, 0);
 
         float inputZ = (Input.GetAxis("Vertical"+id));
-        transform.position += transform.forward * inputZ * speed * Time.deltaTime;
-
+        //transform.position += transform.forward * inputZ * speed;
+        playerRb.velocity = transform.forward * inputZ * speed;
         if (Input.GetButtonDown("Fire"+id+"a"))
         {
             Shot();
@@ -98,15 +100,19 @@ public class PlayerScript : MonoBehaviour
             //Invoke("Load", 1.0f);
             Debug.Log("HPが0になりました");
             this.winnerLabel.gameObject.SetActive(true);
-         
-            if (id == 1)
+
+            if (id == 1 && id == 2)
             {
-                
+                winnerLabel.text = "Draw";
+            }
+            else if (id == 1)
+            {   
                 winnerLabel.text = "P2win";
-            } else
+            }
+            else 
             {
                 winnerLabel.text = "P1win";
-            }
+            } 
 
             //gameObject.SetActive(false);
             //Destroy(this.gameObject);

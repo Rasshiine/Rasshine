@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class StraightBulletScript : MonoBehaviour
 {
+    public float bulletSpeed = 5.0f;
+
     // Start is called before the first frame update
     void Start()
     {
