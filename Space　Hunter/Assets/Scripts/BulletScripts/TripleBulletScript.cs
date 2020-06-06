@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TripleBulletScript : MonoBehaviour
 {
-    public float bulletSpeed = 1.5f;
+    //public float bulletSpeed = 1.5f;
 
     // Start is called before the first frame update
     void Start()

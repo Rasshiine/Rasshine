@@ -2,19 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerScript : MonoBehaviour
 {
     public GameObject straightBullet;
     public GameObject curveBullet;
     public Transform muzzle;
-    public float speed = 1.0f;
-    public float bulletSpeed = 2.0f;
+    public float speed = 2.0f;
+    public float bulletSpeed = 5.0f;
     public float HP = 5;
     public float maxMP = 10;
     public float currentMP = 0;
     public float chargeSpeed = 1.0f;
     public int id = 0;
+    public Text winnerLabel;
     float CountTime = 0.0f;
     public Slider HPSlider;
     public Slider MPSlider;
@@ -31,6 +33,7 @@ public class PlayerScript : MonoBehaviour
         MPSlider.value = 1f;
         HPRotation = HPSlider.transform.rotation;
         //shotButton.onClick.AddListener(Shot);
+        this.winnerLabel.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -90,9 +93,34 @@ public class PlayerScript : MonoBehaviour
         }*/
         if (HP <= 0)
         {
+            //SceneManager.LoadScene("EndScene");
+
+            //Invoke("Load", 1.0f);
             Debug.Log("HPが0になりました");
-            Destroy(this.gameObject);
+            this.winnerLabel.gameObject.SetActive(true);
+         
+            if (id == 1)
+            {
+                
+                winnerLabel.text = "P2win";
+            } else
+            {
+                winnerLabel.text = "P1win";
+            }
+
+            //gameObject.SetActive(false);
+            //Destroy(this.gameObject);
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                SceneManager.LoadScene("StartScene");
+            }
         }
+    }
+
+    public void Load()
+    {
+        Debug.Log("mittann");
+        SceneManager.LoadScene("EndScene");
     }
 
     private void FixedUpdate()
@@ -123,39 +151,39 @@ public class PlayerScript : MonoBehaviour
     }
 
     public void NormalShot()
-    {
-        if (currentMP >= 2.0f)
-        {
+    { 
             Debug.Log(this.transform.position.x);
             GameObject obj = Instantiate(straightBullet, muzzle.position, muzzle.rotation) as GameObject;
             obj.GetComponent<Rigidbody>().velocity = transform.forward * bulletSpeed;
-            
-        }
     }
 
     public void TripleShot()
     {
-        Invoke("NormalShot", 0.1f);
-        Invoke("NormalShot", 0.4f);
-        Invoke("NormalShot", 0.7f);
-
-       /* if (currentMP >= 3.0f)
+        if (currentMP >= 3.0f)
         {
-            Debug.Log(this.transform.position.x);
-            GameObject obj = Instantiate(straightBullet, muzzle.position, muzzle.rotation) as GameObject;
-            for (int i = 0; i < 3; i++)
-            {
-                
-                CountTime += ;
-                if (CountTime >= 0.5f)
-                {
-                    Shot();
-                    CountTime = 0.0f;
-                }
-            }
-        }*/
+            Debug.Log("TripleShot");
+            Invoke("NormalShot", 0.1f);
+            Invoke("NormalShot", 0.4f);
+            Invoke("NormalShot", 0.7f);
+
+            /* if (currentMP >= 3.0f)
+             {
+                 Debug.Log(this.transform.position.x);
+                 GameObject obj = Instantiate(straightBullet, muzzle.position, muzzle.rotation) as GameObject;
+                 for (int i = 0; i < 3; i++)
+                 {
+
+                     CountTime += ;
+                     if (CountTime >= 0.5f)
+                     {
+                         Shot();
+                         CountTime = 0.0f;
+                     }
+                 }
+             }*/
             // Destroy(bullet, 1);
             currentMP -= 3.0f;
+        }
     }
 
 

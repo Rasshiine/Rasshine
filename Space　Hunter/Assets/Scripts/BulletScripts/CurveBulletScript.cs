@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CurveBulletScript : MonoBehaviour
 {
-    public float bulletSpeed = 1.5f;
+    public float bulletSpeed = 5.0f;
     int curveDirection;
     // Start is called before the first frame update
     void Start()
