@@ -15,6 +15,8 @@ public class PlayerScript : MonoBehaviour
     public float maxMP = 10;
     public float currentMP = 0;
     public float chargeSpeed = 1.0f;
+    public float hitTime = 0.5f;
+    public float forcePower = 100;
     public int id = 0;
     public Text winnerLabel;
     float CountTime = 0.0f;
@@ -68,12 +70,18 @@ public class PlayerScript : MonoBehaviour
              transform.Rotate(0, -10, 0);
          }
          */
-        float inputX = (Input.GetAxis("Horizontal"+id));
-        transform.Rotate(0, inputX * Time.deltaTime * 100, 0);
+        if (hitTime >= 0.5f){
+            float inputX = (Input.GetAxis("Horizontal" + id));
+            transform.Rotate(0, inputX * Time.deltaTime * 100, 0);
 
-        float inputZ = (Input.GetAxis("Vertical"+id));
-        //transform.position += transform.forward * inputZ * speed;
-        playerRb.velocity = transform.forward * inputZ * speed;
+            float inputZ = (Input.GetAxis("Vertical" + id));
+            //transform.position += transform.forward * inputZ * speed;
+            playerRb.velocity = transform.forward * inputZ * speed;
+        }
+        if (hitTime <= 0.5f)
+        {
+            hitTime += Time.deltaTime;
+        }
         if (Input.GetButtonDown("Fire"+id+"a"))
         {
             Shot();
@@ -192,12 +200,20 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-
+    
 
     void OnCollisionEnter(Collision other)
     {
+        
         Debug.Log("collision");
-        HP--;
+        Damage();
+        playerRb.AddForce((transform.position - other.transform.position).normalized * forcePower);
+
         // Destroy(bullet);
+    }
+
+    void Damage() {
+        hitTime = 0;
+        HP--;
     }
 }
