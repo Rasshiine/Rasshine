@@ -18,12 +18,18 @@ public class PlayerScript : MonoBehaviour
     public float hitTime = 0.5f;
     public float forcePower = 100;
     public int id = 0;
+    public int key1;
+    public int key2;
+    public int key3;
+    //public int slashKey; 
+    //public int underBarKey;
+    public int nextAttack;
     public Text winnerLabel;
-    float CountTime = 0.0f;
     public Slider HPSlider;
     public Slider MPSlider;
     Rigidbody playerRb;
     Quaternion HPRotation;
+    //float CountTime = 0.0f;
     //public Button shotButton;
     //public Button tripleShotButton;
 
@@ -38,12 +44,21 @@ public class PlayerScript : MonoBehaviour
         HPRotation = HPSlider.transform.rotation;
         //shotButton.onClick.AddListener(Shot);
         this.winnerLabel.gameObject.SetActive(false);
+
+        key1 = Random.Range(1, 4);
+        key2 = Random.Range(1, 4);
+        key3 = Random.Range(1, 4);
+        //2P
+        //dotKey = Random.Range(1, 4);
+        //slashKey = Random.Range(1, 4);
+        //underBarKey = Random.Range(1, 4);
+        nextAttack = Random.Range(1, 4);
     }
 
     // Update is called once per frame
     void Update()
     {
-        CountTime += Time.deltaTime;
+        //CountTime += Time.deltaTime;
         //Debug.Log(currentMP);
         MPSlider.value = currentMP; 
         HPSlider.value = HP;
@@ -70,6 +85,8 @@ public class PlayerScript : MonoBehaviour
              transform.Rotate(0, -10, 0);
          }
          */
+
+         //ノックバックの処理
         if (hitTime >= 0.5f){
             float inputX = (Input.GetAxis("Horizontal" + id));
             transform.Rotate(0, inputX * Time.deltaTime * 100, 0);
@@ -82,10 +99,72 @@ public class PlayerScript : MonoBehaviour
         {
             hitTime += Time.deltaTime;
         }
-        if (Input.GetButtonDown("Fire"+id+"a"))
+
+        //技入れ替えの処理
+        if (Input.GetButtonDown("Fire" + id + "a"))
         {
-            Shot();
+
+
+            switch (key1)
+            {
+                case 1:
+                    Shot();
+                    break;
+                case 2:
+                    CurveShot();
+                    break;
+                case 3:
+                    TripleShot();
+                    break;
+            }
+            key1 = nextAttack;
+            nextAttack = Random.Range(1, 4);
         }
+
+        if (Input.GetButtonDown("Fire" + id + "b"))
+        {
+
+
+            switch (key2)
+            {
+                case 1:
+                    Shot();
+                    break;
+                case 2:
+                    CurveShot();
+                    break;
+                case 3:
+                    TripleShot();
+                    break;
+            }
+            key2 = nextAttack;
+            nextAttack = Random.Range(1, 4);
+        }
+
+        if (Input.GetButtonDown("Fire" + id + "c"))
+        {
+
+
+            switch (key3)
+            {
+                case 1:
+                    Shot();
+                    break;
+                case 2:
+                    CurveShot();
+                    break;
+                case 3:
+                    TripleShot();
+                    break;
+            }
+            key3 = nextAttack;
+            nextAttack = Random.Range(1, 4);
+        }
+
+        /* if (Input.GetButtonDown("Fire" + id + "a"))
+         {
+             Shot();
+         }
 
         if (Input.GetButtonDown("Fire" + id + "b"))
         {
@@ -95,12 +174,8 @@ public class PlayerScript : MonoBehaviour
         if (Input.GetButtonDown("Fire" + id + "c"))
         {
             TripleShot();
-        }
-
-        /*if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Shot();
         }*/
+
         if (HP <= 0)
         {
             //SceneManager.LoadScene("EndScene");
@@ -109,11 +184,8 @@ public class PlayerScript : MonoBehaviour
             Debug.Log("HPが0になりました");
             this.winnerLabel.gameObject.SetActive(true);
 
-            if (id == 1 && id == 2)
-            {
-                winnerLabel.text = "Draw";
-            }
-            else if (id == 1)
+            
+            if (id == 1)
             {   
                 winnerLabel.text = "P2win";
             }
@@ -166,7 +238,7 @@ public class PlayerScript : MonoBehaviour
 
     public void NormalShot()
     { 
-            Debug.Log(this.transform.position.x);
+           // Debug.Log(this.transform.position.x);
             GameObject obj = Instantiate(straightBullet, muzzle.position, muzzle.rotation) as GameObject;
             obj.GetComponent<Rigidbody>().velocity = transform.forward * bulletSpeed;
     }
@@ -198,6 +270,11 @@ public class PlayerScript : MonoBehaviour
             // Destroy(bullet, 1);
             currentMP -= 3.0f;
         }
+    }
+
+    public void Bomb()
+    {
+        
     }
 
     
