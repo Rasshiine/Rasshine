@@ -21,9 +21,14 @@ public class PlayerScript : MonoBehaviour
     public int key1;
     public int key2;
     public int key3;
+    public int nextAttack;
+    public Image attackImage;
+    public Image[] imageArray = new Image[3];
+    public Sprite[] imageResources = new Sprite[4];
+    public int[] keys = new int[3];
     //public int slashKey; 
     //public int underBarKey;
-    public int nextAttack;
+    
     public Text winnerLabel;
     public Slider HPSlider;
     public Slider MPSlider;
@@ -45,14 +50,18 @@ public class PlayerScript : MonoBehaviour
         //shotButton.onClick.AddListener(Shot);
         this.winnerLabel.gameObject.SetActive(false);
 
-        key1 = Random.Range(1, 4);
-        key2 = Random.Range(1, 4);
-        key3 = Random.Range(1, 4);
-        //2P
-        //dotKey = Random.Range(1, 4);
-        //slashKey = Random.Range(1, 4);
-        //underBarKey = Random.Range(1, 4);
+        for (int i = 0; i < 3; i++)
+        {
+            keys[i] = Random.Range(1, 4);
+        }
+       
         nextAttack = Random.Range(1, 4);
+
+        for (int i = 0; i < 3; i++)
+        {
+            imageArray[i].sprite = imageResources[keys[i] - 1];
+        }
+
     }
 
     // Update is called once per frame
@@ -99,29 +108,33 @@ public class PlayerScript : MonoBehaviour
         {
             hitTime += Time.deltaTime;
         }
-
-        //技入れ替えの処理
-        if (Input.GetButtonDown("Fire" + id + "a"))
+        for (int i = 0; i < 3; i++)
         {
-
-
-            switch (key1)
+            //技入れ替えの処理
+            if (Input.GetButtonDown("FireP" + id + "_" + (i + 1)))
             {
-                case 1:
-                    Shot();
-                    break;
-                case 2:
-                    CurveShot();
-                    break;
-                case 3:
-                    TripleShot();
-                    break;
+
+
+                switch (keys[i])
+                {
+                    case 1:
+                        Shot();
+                        break;
+                    case 2:
+                        CurveShot();
+                        break;
+                    case 3:
+                        TripleShot();
+                        break;
+                }
+                keys[i] = nextAttack;
+                imageArray[i].sprite = imageResources[keys[i] - 1];
+                nextAttack = Random.Range(1, 4);
+                //imageArray =
             }
-            key1 = nextAttack;
-            nextAttack = Random.Range(1, 4);
         }
 
-        if (Input.GetButtonDown("Fire" + id + "b"))
+        /*if (Input.GetButtonDown("Fire" + id + "b"))
         {
 
 
@@ -160,7 +173,7 @@ public class PlayerScript : MonoBehaviour
             key3 = nextAttack;
             nextAttack = Random.Range(1, 4);
         }
-
+        */
         /* if (Input.GetButtonDown("Fire" + id + "a"))
          {
              Shot();

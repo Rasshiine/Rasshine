@@ -690,12 +690,20 @@ MonoBehaviour:
   hitTime: 0.5
   forcePower: 100
   id: 0
-  cKey: 0
-  vKey: 0
-  bKey: 0
-  dotKey: 0
-  slashKey: 0
-  underBarKey: 0
+  key1: 0
+  key2: 0
+  key3: 0
+  nextAttack: 0
+  attackImage: {fileID: 0}
+  imageArray:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  imageResources:
+  - {fileID: 21300000, guid: dc2fb41970fc845b5a4ee7badc68677d, type: 3}
+  - {fileID: 21300000, guid: e7700cfb5c4294e928fc15efc6ddb11c, type: 3}
+  - {fileID: 21300000, guid: b0bfb9f8f363241208e2d06b6f64e6d8, type: 3}
+  - {fileID: 21300000, guid: e9a05d790001844c6a7fe0477eaeec6a, type: 3}
   winnerLabel: {fileID: 0}
   HPSlider: {fileID: 3891077205564716496}
   MPSlider: {fileID: 3891077204897758033}
