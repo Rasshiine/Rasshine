@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class PlayerScript : MonoBehaviour
     public float HP = 5;
     public float maxMP = 10;
     public float currentMP = 0;
+    public int attacksNumber = 3;
     public float shotMP = 2.0f;
     public float curveShotMP = 3.0f;
     public float tripleShotMP = 4.0f;
@@ -52,10 +54,10 @@ public class PlayerScript : MonoBehaviour
 
         for (int i = 0; i < 3; i++)
         {
-            keys[i] = Random.Range(1, 4);
+            keys[i] = Random.Range(1, attacksNumber + 1);
         }
        
-        nextAttack = Random.Range(1, 4);
+        nextAttack = Random.Range(1, attacksNumber + 1);
         nextAttackImage.sprite = imageResources[nextAttack - 1];
         //画像を持ってくる
         for (int i = 0; i < 3; i++)
@@ -110,7 +112,7 @@ public class PlayerScript : MonoBehaviour
             hitTime += Time.deltaTime;
         }
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < attacksNumber; i++)
         {
             //技入れ替えの処理
             if (Input.GetButtonDown("FireP" + id + "_" + (i + 1)))
@@ -149,7 +151,7 @@ public class PlayerScript : MonoBehaviour
             {
                 keys[i] = nextAttack;
                 imageArray[i].sprite = imageResources[keys[i] - 1];
-                nextAttack = Random.Range(1, 4);
+                nextAttack = Random.Range(1, attacksNumber + 1);
                 nextAttackImage.sprite = imageResources[nextAttack - 1];
             }
         }
