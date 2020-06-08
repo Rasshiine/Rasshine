@@ -14,15 +14,15 @@ public class PlayerScript : MonoBehaviour
     public float HP = 5;
     public float maxMP = 10;
     public float currentMP = 0;
+    public float shotMP = 2.0f;
+    public float curveShotMP = 3.0f;
+    public float tripleShotMP = 4.0f;
     public float chargeSpeed = 1.0f;
     public float hitTime = 0.5f;
     public float forcePower = 100;
-    public int id = 0;
-    public int key1;
-    public int key2;
-    public int key3;
+    public int id;
     public int nextAttack;
-    public Image attackImage;
+    public Image nextAttackImage;
     public Image[] imageArray = new Image[3];
     public Sprite[] imageResources = new Sprite[4];
     public int[] keys = new int[3];
@@ -56,7 +56,8 @@ public class PlayerScript : MonoBehaviour
         }
        
         nextAttack = Random.Range(1, 4);
-
+        nextAttackImage.sprite = imageResources[nextAttack - 1];
+        //画像を持ってくる
         for (int i = 0; i < 3; i++)
         {
             imageArray[i].sprite = imageResources[keys[i] - 1];
@@ -108,6 +109,7 @@ public class PlayerScript : MonoBehaviour
         {
             hitTime += Time.deltaTime;
         }
+
         for (int i = 0; i < 3; i++)
         {
             //技入れ替えの処理
@@ -118,19 +120,37 @@ public class PlayerScript : MonoBehaviour
                 switch (keys[i])
                 {
                     case 1:
-                        Shot();
+                        if (currentMP >= shotMP)
+                        {
+                            Shot();
+                            ChangeImage();
+                        }
                         break;
                     case 2:
-                        CurveShot();
+                        if (currentMP >= curveShotMP)
+                        {
+                            CurveShot();
+                            ChangeImage();
+                        }
                         break;
                     case 3:
-                        TripleShot();
+                        if (currentMP >= tripleShotMP)
+                        {
+                            TripleShot();
+                            ChangeImage();
+                        }
                         break;
                 }
+               
+                
+                //imageArray =
+            }
+            void ChangeImage()
+            {
                 keys[i] = nextAttack;
                 imageArray[i].sprite = imageResources[keys[i] - 1];
                 nextAttack = Random.Range(1, 4);
-                //imageArray =
+                nextAttackImage.sprite = imageResources[nextAttack - 1];
             }
         }
 

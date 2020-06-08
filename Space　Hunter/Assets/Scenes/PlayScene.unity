@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 42672011}
   - component: {fileID: 42672010}
   m_Layer: 5
-  m_Name: Image (5)
+  m_Name: FireP2_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -154,7 +154,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -174, y: -370}
+  m_AnchoredPosition: {x: -525, y: -370}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &42672010
@@ -298,7 +298,7 @@ GameObject:
   - component: {fileID: 218474792}
   - component: {fileID: 218474791}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: FireP1_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -372,7 +372,7 @@ GameObject:
   - component: {fileID: 320103965}
   - component: {fileID: 320103964}
   m_Layer: 5
-  m_Name: Image (6)
+  m_Name: FireP2_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -394,7 +394,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -649, y: -241}
+  m_AnchoredPosition: {x: -393, y: -350}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &320103964
@@ -519,7 +519,7 @@ GameObject:
   - component: {fileID: 493105167}
   - component: {fileID: 493105166}
   m_Layer: 5
-  m_Name: Image (4)
+  m_Name: P1NextAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -741,7 +741,7 @@ GameObject:
   - component: {fileID: 706034884}
   - component: {fileID: 706034883}
   m_Layer: 5
-  m_Name: Image (3)
+  m_Name: FireP2_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1007,7 +1007,7 @@ GameObject:
   - component: {fileID: 1043137243}
   - component: {fileID: 1043137242}
   m_Layer: 5
-  m_Name: Image (2)
+  m_Name: FireP1_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1285,6 +1285,11 @@ PrefabInstance:
       propertyPath: imageArray.Array.data[2]
       value: 
       objectReference: {fileID: 320103964}
+    - target: {fileID: 3891077205584585226, guid: 3b88a430cc426432d8427ad827bb14af,
+        type: 3}
+      propertyPath: nextAttackImage
+      value: 
+      objectReference: {fileID: 1687502053}
     - target: {fileID: 3891077205466918359, guid: 3b88a430cc426432d8427ad827bb14af,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1554,7 +1559,7 @@ GameObject:
   - component: {fileID: 1687502054}
   - component: {fileID: 1687502053}
   m_Layer: 5
-  m_Name: Image (7)
+  m_Name: P2nextAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1569,14 +1574,14 @@ RectTransform:
   m_GameObject: {fileID: 1687502051}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.60764, y: 0.60764, z: 0.60764}
   m_Children: []
   m_Father: {fileID: 1979972761}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -649, y: -110}
+  m_AnchoredPosition: {x: -264, y: -368}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1687502053
@@ -1812,7 +1817,7 @@ GameObject:
   - component: {fileID: 1954832641}
   - component: {fileID: 1954832640}
   m_Layer: 5
-  m_Name: Image
+  m_Name: FireP1_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2105,6 +2110,11 @@ PrefabInstance:
       propertyPath: imageArray.Array.data[2]
       value: 
       objectReference: {fileID: 1043137242}
+    - target: {fileID: 3891077205584585226, guid: 3b88a430cc426432d8427ad827bb14af,
+        type: 3}
+      propertyPath: nextAttackImage
+      value: 
+      objectReference: {fileID: 493105166}
     - target: {fileID: 3891077205466918359, guid: 3b88a430cc426432d8427ad827bb14af,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -2194,6 +2204,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9055943954734536720, guid: 3b88a430cc426432d8427ad827bb14af,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.000000048103
+      objectReference: {fileID: 0}
+    - target: {fileID: 9055943954734536720, guid: 3b88a430cc426432d8427ad827bb14af,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.00000023842
+      objectReference: {fileID: 0}
+    - target: {fileID: 9055943954734536720, guid: 3b88a430cc426432d8427ad827bb14af,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0000000084821
       objectReference: {fileID: 0}
     - target: {fileID: 9174914664242315668, guid: 3b88a430cc426432d8427ad827bb14af,
         type: 3}
