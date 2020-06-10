@@ -316,11 +316,12 @@ public class PlayerScript : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        
-        Debug.Log("collision");
-        Damage();
-        playerRb.AddForce((transform.position - other.transform.position).normalized * forcePower);
-
+        if (other.gameObject.tag == "Damage")
+        {
+            Debug.Log("collision");
+            Damage();
+            playerRb.AddForce((transform.position - other.transform.position).normalized * forcePower);
+        }
         // Destroy(bullet);
     }
 

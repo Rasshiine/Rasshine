@@ -681,20 +681,21 @@ MonoBehaviour:
   curveBullet: {fileID: 1842420831239892224, guid: 13b9bd3b3fe8341aca82b872d63e9c28,
     type: 3}
   muzzle: {fileID: 3891077205386257522}
-  speed: 10
+  speed: 30
   bulletSpeed: 10
   HP: 5
   maxMP: 1000
   currentMP: 0
+  attacksNumber: 3
+  shotMP: 2
+  curveShotMP: 3
+  tripleShotMP: 4
   chargeSpeed: 1
   hitTime: 0.5
   forcePower: 100
   id: 0
-  key1: 0
-  key2: 0
-  key3: 0
   nextAttack: 0
-  attackImage: {fileID: 0}
+  nextAttackImage: {fileID: 0}
   imageArray:
   - {fileID: 0}
   - {fileID: 0}
@@ -704,6 +705,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e7700cfb5c4294e928fc15efc6ddb11c, type: 3}
   - {fileID: 21300000, guid: b0bfb9f8f363241208e2d06b6f64e6d8, type: 3}
   - {fileID: 21300000, guid: e9a05d790001844c6a7fe0477eaeec6a, type: 3}
+  keys: 000000000000000000000000
   winnerLabel: {fileID: 0}
   HPSlider: {fileID: 3891077205564716496}
   MPSlider: {fileID: 3891077204897758033}
