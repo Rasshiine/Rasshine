@@ -11,6 +11,7 @@ public class PlayerScript : MonoBehaviour
     public GameObject curveBullet;
     public GameObject Bomb;
     public Transform muzzle;
+    public Transform bombMuzzle;
     public float speed = 2.0f;
     public float bulletSpeed = 5.0f;
     public float HP = 5;
@@ -19,10 +20,12 @@ public class PlayerScript : MonoBehaviour
     public Text HPLabel;
     public Text MPLabel;
     public int attacksNumber = 4;
+
     public float shotMP = 2.0f;
     public float curveShotMP = 3.0f;
     public float tripleShotMP = 4.0f;
     public float BombMP = 4.0f;
+
     public float chargeSpeed = 3.0f;
     public float hitTime = 0.5f;
     public float forcePower = 100;
@@ -249,6 +252,8 @@ public class PlayerScript : MonoBehaviour
                 SceneManager.LoadScene("StartScene");
             }
         }
+
+        HP -= 0.05f;
     }
 
     public void Load()
@@ -264,23 +269,23 @@ public class PlayerScript : MonoBehaviour
 
     public void Shot()
     {
-        if (currentMP >= 2.0f)
+        if (currentMP >= shotMP)
         {
             Debug.Log(this.transform.position.x);
             GameObject obj = Instantiate(straightBullet, muzzle.position, muzzle.rotation) as GameObject;
             obj.GetComponent<Rigidbody>().velocity = transform.forward * bulletSpeed;
-            currentMP -= 2.0f;
+            currentMP -= shotMP;
         }
     }
 
     public void CurveShot()
     {
-        if (currentMP >= 3.0f)
+        if (currentMP >= curveShotMP)
         {
             Debug.Log("CurveShot");
             GameObject obj = Instantiate(curveBullet, muzzle.position, muzzle.rotation) as GameObject;
             obj.GetComponent<Rigidbody>().velocity = transform.forward * bulletSpeed;
-            currentMP -= 3.0f;
+            currentMP -= curveShotMP;
         }
     }
 
@@ -293,7 +298,7 @@ public class PlayerScript : MonoBehaviour
 
     public void TripleShot()
     {
-        if (currentMP >= 3.0f)
+        if (currentMP >= tripleShotMP)
         {
             Debug.Log("TripleShot");
             Invoke("NormalShot", 0.1f);
@@ -316,13 +321,17 @@ public class PlayerScript : MonoBehaviour
                  }
              }*/
             // Destroy(bullet, 1);
-            currentMP -= 3.0f;
+            currentMP -= tripleShotMP;
         }
     }
 
     public void BombPut()
     {
-        GameObject obj = Instantiate(Bomb, muzzle.position, muzzle.rotation) as GameObject;
+        if (currentMP >= BombMP)
+        {
+            GameObject obj = Instantiate(Bomb, bombMuzzle.position , bombMuzzle.rotation) as GameObject;
+            currentMP -= BombMP;
+        }
     }
 
 
@@ -343,5 +352,16 @@ public class PlayerScript : MonoBehaviour
         HP--;
         HPSlider.DOValue(HP, 2.0f);
     }
-        
+
+    private void OnTriggerStay(Collider other)
+    {
+        {
+            if (other.gameObject.tag == "Sphere")
+            {
+                HP += 0.05f;
+            }
+        }
+    }
+
+
 }
