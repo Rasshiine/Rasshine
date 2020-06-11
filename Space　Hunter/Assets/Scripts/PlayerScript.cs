@@ -16,12 +16,14 @@ public class PlayerScript : MonoBehaviour
     public float HP = 5;
     public float maxMP = 10;
     public float currentMP = 0;
+    public Text HPLabel;
+    public Text MPLabel;
     public int attacksNumber = 4;
     public float shotMP = 2.0f;
     public float curveShotMP = 3.0f;
     public float tripleShotMP = 4.0f;
     public float BombMP = 4.0f;
-    public float chargeSpeed = 1.0f;
+    public float chargeSpeed = 3.0f;
     public float hitTime = 0.5f;
     public float forcePower = 100;
     public int id;
@@ -49,7 +51,7 @@ public class PlayerScript : MonoBehaviour
         HPSlider.maxValue = HP;
         HPSlider.value = HP;
         MPSlider.maxValue = maxMP;
-        MPSlider.value = 1f;
+        MPSlider.value = 0f;
         HPRotation = HPSlider.transform.rotation;
         //shotButton.onClick.AddListener(Shot);
         this.winnerLabel.gameObject.SetActive(false);
@@ -72,10 +74,12 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        HPLabel.text = HP.ToString("f0");
+        MPLabel.text = currentMP.ToString("f0");
         //CountTime += Time.deltaTime;
         //Debug.Log(currentMP);
         MPSlider.value = currentMP; 
-        HPSlider.value = HP;
+       // HPSlider.value = HP;
         HPSlider.transform.rotation = HPRotation;
         if (currentMP >= maxMP)
         {
@@ -114,7 +118,7 @@ public class PlayerScript : MonoBehaviour
             hitTime += Time.deltaTime;
         }
 
-        for (int i = 0; i < attacksNumber; i++)
+        for (int i = 0; i < 3; i++)
         {
             //技入れ替えの処理
             if (Input.GetButtonDown("FireP" + id + "_" + (i + 1)))
@@ -154,7 +158,6 @@ public class PlayerScript : MonoBehaviour
                 }
                
                 
-                //imageArray =
             }
             void ChangeImage()
             {
@@ -225,6 +228,7 @@ public class PlayerScript : MonoBehaviour
             //SceneManager.LoadScene("EndScene");
 
             //Invoke("Load", 1.0f);
+            HP = 0;
             Debug.Log("HPが0になりました");
             this.winnerLabel.gameObject.SetActive(true);
 
@@ -337,7 +341,7 @@ public class PlayerScript : MonoBehaviour
     void Damage() {
         hitTime = 0;
         HP--;
-        
+        HPSlider.DOValue(HP, 2.0f);
     }
         
 }
