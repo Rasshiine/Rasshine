@@ -6,10 +6,13 @@ using UnityEngine.UI;
 public class StraightBulletScript : MonoBehaviour
 {
     public float bulletSpeed = 5.0f;
+    public AudioClip Explosion1;
+    private AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         Destroy(gameObject, 1);
     }
 
@@ -20,6 +23,10 @@ public class StraightBulletScript : MonoBehaviour
     }
     private void OnCollisionEnter(Collision other)
     {
-        Destroy(gameObject);
+        Debug.Log(audioSource);
+        //audioSource.PlayOneShot(Explosion1);
+        audioSource.clip = Explosion1;
+        audioSource.Play();
+        Destroy(gameObject,0.2f);
     }
 }

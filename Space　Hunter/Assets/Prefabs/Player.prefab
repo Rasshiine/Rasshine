@@ -680,6 +680,7 @@ MonoBehaviour:
     type: 3}
   curveBullet: {fileID: 1842420831239892224, guid: 13b9bd3b3fe8341aca82b872d63e9c28,
     type: 3}
+  Bomb: {fileID: -927199367670048503, guid: 17031756f812d43e68a1b0c3c3f725ea, type: 3}
   muzzle: {fileID: 3891077205386257522}
   speed: 30
   bulletSpeed: 10
@@ -690,6 +691,7 @@ MonoBehaviour:
   shotMP: 2
   curveShotMP: 3
   tripleShotMP: 4
+  BombMP: 4
   chargeSpeed: 1
   hitTime: 0.5
   forcePower: 100

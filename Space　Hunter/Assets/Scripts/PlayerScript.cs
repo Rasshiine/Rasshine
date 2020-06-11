@@ -9,23 +9,25 @@ public class PlayerScript : MonoBehaviour
 {
     public GameObject straightBullet;
     public GameObject curveBullet;
+    public GameObject Bomb;
     public Transform muzzle;
     public float speed = 2.0f;
     public float bulletSpeed = 5.0f;
     public float HP = 5;
     public float maxMP = 10;
     public float currentMP = 0;
-    public int attacksNumber = 3;
+    public int attacksNumber = 4;
     public float shotMP = 2.0f;
     public float curveShotMP = 3.0f;
     public float tripleShotMP = 4.0f;
+    public float BombMP = 4.0f;
     public float chargeSpeed = 1.0f;
     public float hitTime = 0.5f;
     public float forcePower = 100;
     public int id;
     public int nextAttack;
     public Image nextAttackImage;
-    public Image[] imageArray = new Image[3];
+    public Image[] imageArray = new Image[4];
     public Sprite[] imageResources = new Sprite[4];
     public int[] keys = new int[3];
     //public int slashKey; 
@@ -139,6 +141,13 @@ public class PlayerScript : MonoBehaviour
                         if (currentMP >= tripleShotMP)
                         {
                             TripleShot();
+                            ChangeImage();
+                        }
+                        break;
+                    case 4:
+                        if (currentMP >= BombMP)
+                        {
+                            BombPut();
                             ChangeImage();
                         }
                         break;
@@ -307,12 +316,12 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    public void Bomb()
+    public void BombPut()
     {
-        
+        GameObject obj = Instantiate(Bomb, muzzle.position, muzzle.rotation) as GameObject;
     }
 
-    
+
 
     void OnCollisionEnter(Collision other)
     {
@@ -328,5 +337,7 @@ public class PlayerScript : MonoBehaviour
     void Damage() {
         hitTime = 0;
         HP--;
+        
     }
+        
 }
