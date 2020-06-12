@@ -38,8 +38,8 @@ public class PlayerScript : MonoBehaviour
     public int id;
     public int nextAttack;
     public Image nextAttackImage;
-    public Image[] imageArray = new Image[4];
-    public Sprite[] imageResources = new Sprite[4];
+    public Image[] imageArray = new Image[5];
+    public Sprite[] imageResources = new Sprite[5];
     public int[] keys = new int[3];
     //public int slashKey; 
     //public int underBarKey;
@@ -49,6 +49,7 @@ public class PlayerScript : MonoBehaviour
     public Slider MPSlider;
     Rigidbody playerRb;
     Quaternion HPRotation;
+    bool isInshadow = false;
     //float CountTime = 0.0f;
     //public Button shotButton;
     //public Button tripleShotButton;
@@ -94,24 +95,6 @@ public class PlayerScript : MonoBehaviour
         {
             currentMP = maxMP;
         }
-
-        /* if (Input.GetKey(KeyCode.W))
-         {
-             transform.position += transform.forward * 0.05f;
-         }
-         if (Input.GetKey(KeyCode.S))
-         {
-             transform.position -= transform.forward * 0.05f;
-         }
-         if (Input.GetKey(KeyCode.D))
-         {
-             transform.Rotate(0, 10, 0);
-         }
-         if (Input.GetKey(KeyCode.A))
-         {
-             transform.Rotate(0, -10, 0);
-         }
-         */
 
          //ノックバックの処理
         if (hitTime >= 0.5f){
@@ -186,62 +169,6 @@ public class PlayerScript : MonoBehaviour
         }
 
 
-
-        /*if (Input.GetButtonDown("Fire" + id + "b"))
-        {
-
-
-            switch (key2)
-            {
-                case 1:
-                    Shot();
-                    break;
-                case 2:
-                    CurveShot();
-                    break;
-                case 3:
-                    TripleShot();
-                    break;
-            }
-            key2 = nextAttack;
-            nextAttack = Random.Range(1, 4);
-        }
-
-        if (Input.GetButtonDown("Fire" + id + "c"))
-        {
-
-
-            switch (key3)
-            {
-                case 1:
-                    Shot();
-                    break;
-                case 2:
-                    CurveShot();
-                    break;
-                case 3:
-                    TripleShot();
-                    break;
-            }
-            key3 = nextAttack;
-            nextAttack = Random.Range(1, 4);
-        }
-        */
-        /* if (Input.GetButtonDown("Fire" + id + "a"))
-         {
-             Shot();
-         }
-
-        if (Input.GetButtonDown("Fire" + id + "b"))
-        {
-            CurveShot();
-        }
-
-        if (Input.GetButtonDown("Fire" + id + "c"))
-        {
-            TripleShot();
-        }*/
-
         if (HP <= 0)
         {
             //SceneManager.LoadScene("EndScene");
@@ -268,8 +195,10 @@ public class PlayerScript : MonoBehaviour
                 SceneManager.LoadScene("StartScene");
             }
         }
-
-        HP -= 0.05f;
+        if (isInshadow == false)
+        {
+            HP -= 0.05f;
+        }
     }
 
     public void Load()
@@ -321,22 +250,6 @@ public class PlayerScript : MonoBehaviour
             Invoke("NormalShot", 0.4f);
             Invoke("NormalShot", 0.7f);
 
-            /* if (currentMP >= 3.0f)
-             {
-                 Debug.Log(this.transform.position.x);
-                 GameObject obj = Instantiate(straightBullet, muzzle.position, muzzle.rotation) as GameObject;
-                 for (int i = 0; i < 3; i++)
-                 {
-
-                     CountTime += ;
-                     if (CountTime >= 0.5f)
-                     {
-                         Shot();
-                         CountTime = 0.0f;
-                     }
-                 }
-             }*/
-            // Destroy(bullet, 1);
             currentMP -= tripleShotMP;
         }
     }
@@ -384,17 +297,23 @@ public class PlayerScript : MonoBehaviour
         hitTime = 0;
         HP--;
         HPSlider.DOValue(HP, 2.0f);
-        HPLabel.DOFade(0.5f, this.DurationSeconds).SetEase(this.EaseType).SetLoops(3, LoopType.Yoyo); ;
+        HPLabel.DOFade(0.01f, this.DurationSeconds).SetEase(this.EaseType).SetLoops(5, LoopType.Restart);
     }
 
     private void OnTriggerStay(Collider other)
     {
-        {
-            if (other.gameObject.tag == "Sphere")
-            {
-                HP += 0.05f;
+       
+        if (other.gameObject.tag == "Sphere")
+            { 
+                isInshadow = true;
             }
+
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Sphere")
+        {
+            isInshadow = false;
         }
     }
-
 }
