@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BombScript : MonoBehaviour
 {
+    public GameObject Explosion;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,5 +20,6 @@ public class BombScript : MonoBehaviour
     {
         if (other.gameObject.tag != "Untagged")
         Destroy(gameObject);
+        Instantiate(Explosion, transform.position, transform.rotation);
     }
 }

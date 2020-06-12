@@ -19,6 +19,8 @@ public class PlayerScript : MonoBehaviour
     public float currentMP = 0;
     public Text HPLabel;
     public Text MPLabel;
+    public float DurationSeconds;
+    public Ease EaseType;
     public int attacksNumber = 4;
 
     public float shotMP = 2.0f;
@@ -168,6 +170,7 @@ public class PlayerScript : MonoBehaviour
                 imageArray[i].sprite = imageResources[keys[i] - 1];
                 nextAttack = Random.Range(1, attacksNumber + 1);
                 nextAttackImage.sprite = imageResources[nextAttack - 1];
+                transform.DOScale(1.1f, 0.5f).SetEase(Ease.OutElastic);
             }
         }
 
@@ -351,6 +354,7 @@ public class PlayerScript : MonoBehaviour
         hitTime = 0;
         HP--;
         HPSlider.DOValue(HP, 2.0f);
+        HPLabel.DOFade(0.0f, this.DurationSeconds).SetEase(this.EaseType).SetLoops(3, LoopType.Yoyo); ;
     }
 
     private void OnTriggerStay(Collider other)
