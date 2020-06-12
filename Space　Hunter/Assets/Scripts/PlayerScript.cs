@@ -10,6 +10,9 @@ public class PlayerScript : MonoBehaviour
     public GameObject straightBullet;
     public GameObject curveBullet;
     public GameObject Bomb;
+    public GameObject robot1;
+    public GameObject robot2;
+
     public Transform muzzle;
     public Transform bombMuzzle;
     public float speed = 2.0f;
@@ -21,12 +24,13 @@ public class PlayerScript : MonoBehaviour
     public Text MPLabel;
     public float DurationSeconds;
     public Ease EaseType;
-    public int attacksNumber = 4;
+    public int attacksNumber = 5;
 
     public float shotMP = 2.0f;
     public float curveShotMP = 3.0f;
     public float tripleShotMP = 4.0f;
-    public float BombMP = 4.0f;
+    public float bombMP = 4.0f;
+    public float robotMP = 8.0f;
 
     public float chargeSpeed = 3.0f;
     public float hitTime = 0.5f;
@@ -154,9 +158,16 @@ public class PlayerScript : MonoBehaviour
                         }
                         break;
                     case 4:
-                        if (currentMP >= BombMP)
+                        if (currentMP >= bombMP)
                         {
                             BombPut();
+                            ChangeImage();
+                        }
+                        break;
+                    case 5:
+                        if (currentMP >= robotMP)
+                        {
+                            RobotPut();
                             ChangeImage();
                         }
                         break;
@@ -173,6 +184,8 @@ public class PlayerScript : MonoBehaviour
                 transform.DOScale(1.1f, 0.5f).SetEase(Ease.OutElastic);
             }
         }
+
+
 
         /*if (Input.GetButtonDown("Fire" + id + "b"))
         {
@@ -330,12 +343,29 @@ public class PlayerScript : MonoBehaviour
 
     public void BombPut()
     {
-        if (currentMP >= BombMP)
+        if (currentMP >= bombMP)
         {
             GameObject obj = Instantiate(Bomb, bombMuzzle.position , bombMuzzle.rotation) as GameObject;
-            currentMP -= BombMP;
+            currentMP -= bombMP;
         }
     }
+
+    public void RobotPut()
+    {
+        if (currentMP >= robotMP)
+        {
+            if (id == 1)
+            { 
+                GameObject obj = Instantiate(robot1, bombMuzzle.position, bombMuzzle.rotation) as GameObject;
+            }
+            else
+            {
+                GameObject obj = Instantiate(robot2, bombMuzzle.position, bombMuzzle.rotation) as GameObject;
+            }
+            currentMP -= robotMP;
+        }
+    }
+
 
 
 
@@ -354,7 +384,7 @@ public class PlayerScript : MonoBehaviour
         hitTime = 0;
         HP--;
         HPSlider.DOValue(HP, 2.0f);
-        HPLabel.DOFade(0.0f, this.DurationSeconds).SetEase(this.EaseType).SetLoops(3, LoopType.Yoyo); ;
+        HPLabel.DOFade(0.5f, this.DurationSeconds).SetEase(this.EaseType).SetLoops(3, LoopType.Yoyo); ;
     }
 
     private void OnTriggerStay(Collider other)
@@ -366,6 +396,5 @@ public class PlayerScript : MonoBehaviour
             }
         }
     }
-
 
 }

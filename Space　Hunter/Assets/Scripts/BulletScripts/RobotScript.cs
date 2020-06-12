@@ -6,11 +6,14 @@ public class RobotScript : MonoBehaviour
 {
     UnityEngine.AI.NavMeshAgent agent;
     GameObject player;
+    public string targetName;
+
+
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-        player = GameObject.FindGameObjectWithTag("Player1");
+        player = GameObject.FindGameObjectWithTag(targetName);
     }
 
     // Update is called once per frame
