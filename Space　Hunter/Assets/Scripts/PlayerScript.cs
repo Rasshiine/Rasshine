@@ -10,9 +10,16 @@ public class PlayerScript : MonoBehaviour
     bool isPlaying = false;
     public GameObject straightBullet;
     public GameObject curveBullet;
-    public GameObject Bomb;
+    public GameObject bomb;
     public GameObject robot1;
     public GameObject robot2;
+
+    float straightBulletDamage = 3.0f;
+    float curveBulletDamage = 3.0f;
+    float tripleBulletDamage = 2.0f;
+    float bombDamage = 5.0f;
+    float robotDamage = 4.0f;
+    float rockDamage = 2.0f;
 
     public Transform muzzle;
     public Transform bombMuzzle;
@@ -259,7 +266,7 @@ public class PlayerScript : MonoBehaviour
     {
         if (currentMP >= bombMP)
         {
-            GameObject obj = Instantiate(Bomb, bombMuzzle.position , bombMuzzle.rotation) as GameObject;
+            GameObject obj = Instantiate(bomb, bombMuzzle.position , bombMuzzle.rotation) as GameObject;
             currentMP -= bombMP;
         }
     }
@@ -285,18 +292,48 @@ public class PlayerScript : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag == "Damage")
+        switch (other.gameObject.tag)
+        {
+            case "Straight":
+                HP -= straightBulletDamage;
+                break;
+
+            case "Curve":
+                HP -= curveBulletDamage;
+                break;
+
+            case "Triple":
+                HP -= tripleBulletDamage;
+                break;
+
+            case "Bomb":
+                HP -= bombDamage;
+                break;
+
+            case "Robot":
+                HP -= robotDamage;
+                break;
+
+            case "DamageRock":
+                HP -= rockDamage;
+                break;
+        }
+        //ここもうちょっと上手く書きたい
+        Damage();
+        playerRb.AddForce((transform.position - other.transform.position).normalized * forcePower);
+
+        /*if (other.gameObject.tag == "Damage")
         {
             Debug.Log("collision");
             Damage();
-            playerRb.AddForce((transform.position - other.transform.position).normalized * forcePower);
         }
         // Destroy(bullet);
+        */
     }
 
     void Damage() {
         hitTime = 0;
-        HP--;
+        //HP--;
         HPSlider.DOValue(HP, 2.0f);
         HPLabel.gameObject.transform.DOShakePosition(0.3f, 10, 10, 90, false, true);
     }

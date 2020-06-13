@@ -8,6 +8,12 @@ TagManager:
   - Player1
   - Player2
   - Sphere
+  - Straight
+  - Curve
+  - Triple
+  - Bomb
+  - Robot
+  - DamageRock
   layers:
   - Default
   - TransparentFX

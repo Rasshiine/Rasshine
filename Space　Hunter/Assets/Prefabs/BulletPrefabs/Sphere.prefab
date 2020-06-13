@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 324306964111292049}
   m_Layer: 0
   m_Name: Sphere
-  m_TagString: Damage
+  m_TagString: Straight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

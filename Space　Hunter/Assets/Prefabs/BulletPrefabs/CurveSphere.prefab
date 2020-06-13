@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -1281723994512836108}
   m_Layer: 0
   m_Name: CurveSphere
-  m_TagString: Damage
+  m_TagString: Curve
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
