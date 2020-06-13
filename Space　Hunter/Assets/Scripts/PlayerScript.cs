@@ -24,7 +24,7 @@ public class PlayerScript : MonoBehaviour
     public Text MPLabel;
     public float DurationSeconds;
     public Ease EaseType;
-    public int attacksNumber = 5;
+    private int attacksNumber = 5;
 
     public float shotMP = 2.0f;
     public float curveShotMP = 3.0f;
@@ -297,7 +297,7 @@ public class PlayerScript : MonoBehaviour
         hitTime = 0;
         HP--;
         HPSlider.DOValue(HP, 2.0f);
-        HPLabel.DOFade(0.01f, this.DurationSeconds).SetEase(this.EaseType).SetLoops(5, LoopType.Restart);
+        HPLabel.gameObject.transform.DOShakePosition(0.3f, 10, 10, 90, false, true);
     }
 
     private void OnTriggerStay(Collider other)
