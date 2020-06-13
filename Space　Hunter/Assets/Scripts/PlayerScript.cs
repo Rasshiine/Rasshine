@@ -7,6 +7,7 @@ using DG.Tweening;
 
 public class PlayerScript : MonoBehaviour
 {
+    bool isPlaying = false;
     public GameObject straightBullet;
     public GameObject curveBullet;
     public GameObject Bomb;
