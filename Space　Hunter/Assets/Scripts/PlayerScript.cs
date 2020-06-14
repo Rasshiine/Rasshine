@@ -8,6 +8,8 @@ using DG.Tweening;
 public class PlayerScript : MonoBehaviour
 {
     bool isPlaying = false;
+    public Text countDownText;
+
     public GameObject straightBullet;
     public GameObject curveBullet;
     public GameObject bomb;
@@ -20,6 +22,7 @@ public class PlayerScript : MonoBehaviour
     float bombDamage = 5.0f;
     float robotDamage = 4.0f;
     float rockDamage = 2.0f;
+    float playerDamage = 2.0f;
 
     public Transform muzzle;
     public Transform bombMuzzle;
@@ -58,20 +61,33 @@ public class PlayerScript : MonoBehaviour
     Rigidbody playerRb;
     Quaternion HPRotation;
     bool isInshadow = false;
+
+    public AudioClip countDown1;
+    public AudioClip countDown2;
+    public AudioClip damage;
+    public AudioClip bigExplosion;
+    public AudioClip BGM;
+    public AudioClip winner;
+    bool BGMPlay = true;
+    bool explosionPlay = true;
+
+    private AudioSource audioSource;
+
     //float CountTime = 0.0f;
-    //public Button shotButton;
-    //public Button tripleShotButton;
 
     // Start is called before the first frame update
     void Start()
     {
         playerRb = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
         HPSlider.maxValue = HP;
         HPSlider.value = HP;
         MPSlider.maxValue = maxMP;
         MPSlider.value = 0f;
         HPRotation = HPSlider.transform.rotation;
-        //shotButton.onClick.AddListener(Shot);
+        StartCoroutine(CountDown());
+
+        
         this.winnerLabel.gameObject.SetActive(false);
 
         for (int i = 0; i < 3; i++)
@@ -89,9 +105,35 @@ public class PlayerScript : MonoBehaviour
 
     }
 
+    IEnumerator CountDown()
+    {
+        countDownText.text = "3";
+        yield return new WaitForSeconds(1.0f);
+
+        countDownText.text = "2";
+        yield return new WaitForSeconds(1.0f);
+
+        countDownText.text = "1";
+        yield return new WaitForSeconds(1.0f);
+
+        countDownText.text = "GO!";
+        yield return new WaitForSeconds(1.0f);
+
+        countDownText.text = "";
+        isPlaying = true;
+    }
+
     // Update is called once per frame
     void Update()
     {
+        if (isPlaying == false)
+            return;
+
+        if (BGMPlay == true)
+        {
+            audioSource.PlayOneShot(BGM);
+            BGMPlay = false;
+        }
         HPLabel.text = HP.ToString("f0");
         MPLabel.text = currentMP.ToString("f0");
         //CountTime += Time.deltaTime;
@@ -110,7 +152,6 @@ public class PlayerScript : MonoBehaviour
             transform.Rotate(0, inputX * Time.deltaTime * 100, 0);
 
             float inputZ = (Input.GetAxis("Vertical" + id));
-            //transform.position += transform.forward * inputZ * speed;
             playerRb.velocity = transform.forward * inputZ * speed;
         }
         if (hitTime <= 0.5f)
@@ -179,42 +220,40 @@ public class PlayerScript : MonoBehaviour
 
         if (HP <= 0)
         {
-            //SceneManager.LoadScene("EndScene");
-
             //Invoke("Load", 1.0f);
             HP = 0;
-            Debug.Log("HPが0になりました");
+            if (explosionPlay == true)
+            {
+                audioSource.PlayOneShot(bigExplosion);
+                explosionPlay = false;
+            }
+            
             this.winnerLabel.gameObject.SetActive(true);
 
-            
-            if (id == 1)
-            {   
+            if (id == 1)  
                 winnerLabel.text = "P2win";
-            }
             else 
-            {
                 winnerLabel.text = "P1win";
-            } 
 
+            //isPlaying = false;
             //gameObject.SetActive(false);
-            //Destroy(this.gameObject);
+            Invoke("Explode", 2.0f);
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 SceneManager.LoadScene("StartScene");
             }
         }
-        if (isInshadow == false)
+
+        if (isInshadow == true)
         {
             HP -= 0.05f;
         }
     }
 
-    public void Load()
+    void Explode()
     {
-        Debug.Log("mittann");
-        SceneManager.LoadScene("EndScene");
+        Destroy(this.gameObject);
     }
-
     private void FixedUpdate()
     {
         currentMP += chargeSpeed * Time.fixedDeltaTime;
@@ -276,18 +315,17 @@ public class PlayerScript : MonoBehaviour
         if (currentMP >= robotMP)
         {
             if (id == 1)
-            { 
+            {
                 GameObject obj = Instantiate(robot1, bombMuzzle.position, bombMuzzle.rotation) as GameObject;
             }
             else
             {
                 GameObject obj = Instantiate(robot2, bombMuzzle.position, bombMuzzle.rotation) as GameObject;
             }
+            
             currentMP -= robotMP;
         }
     }
-
-
 
 
     void OnCollisionEnter(Collision other)
@@ -317,23 +355,27 @@ public class PlayerScript : MonoBehaviour
             case "DamageRock":
                 HP -= rockDamage;
                 break;
+
+            case "Player1":
+                HP -= playerDamage;
+                break;
+
+            case "Player2":
+                HP -= playerDamage;
+                break;
+        }
+        if (other.gameObject.tag != "Untagged")
+        {
+            Damage();
+            playerRb.AddForce((transform.position - other.transform.position).normalized * forcePower);
         }
         //ここもうちょっと上手く書きたい
-        Damage();
-        playerRb.AddForce((transform.position - other.transform.position).normalized * forcePower);
-
-        /*if (other.gameObject.tag == "Damage")
-        {
-            Debug.Log("collision");
-            Damage();
-        }
-        // Destroy(bullet);
-        */
     }
 
     void Damage() {
         hitTime = 0;
         //HP--;
+        audioSource.PlayOneShot(damage);
         HPSlider.DOValue(HP, 2.0f);
         HPLabel.gameObject.transform.DOShakePosition(0.3f, 10, 10, 90, false, true);
     }
@@ -343,7 +385,7 @@ public class PlayerScript : MonoBehaviour
        
         if (other.gameObject.tag == "Sphere")
             { 
-                isInshadow = true;
+                isInshadow = false;
             }
 
     }
@@ -351,7 +393,7 @@ public class PlayerScript : MonoBehaviour
     {
         if (other.gameObject.tag == "Sphere")
         {
-            isInshadow = false;
+            isInshadow = true;
         }
     }
 }

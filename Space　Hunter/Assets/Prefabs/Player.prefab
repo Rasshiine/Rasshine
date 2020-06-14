@@ -893,11 +893,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d2d753c7c1604f9698bc9a0f1da297a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  countDownText: {fileID: 0}
   straightBullet: {fileID: 1842420831239892224, guid: 1511aaf1370cb434aa25d15d084e7bec,
     type: 3}
   curveBullet: {fileID: 1842420831239892224, guid: 13b9bd3b3fe8341aca82b872d63e9c28,
     type: 3}
-  Bomb: {fileID: 3919855736691520928, guid: d6010ae1500a5497c8895f90e65e2ebd, type: 3}
+  bomb: {fileID: 3919855736691520928, guid: d6010ae1500a5497c8895f90e65e2ebd, type: 3}
   robot1: {fileID: 0}
   robot2: {fileID: 0}
   muzzle: {fileID: 3891077205386257522}
@@ -911,7 +912,6 @@ MonoBehaviour:
   MPLabel: {fileID: 0}
   DurationSeconds: 1
   EaseType: 0
-  attacksNumber: 3
   shotMP: 2
   curveShotMP: 3
   tripleShotMP: 4
@@ -937,6 +937,10 @@ MonoBehaviour:
   winnerLabel: {fileID: 0}
   HPSlider: {fileID: 3891077205564716496}
   MPSlider: {fileID: 3891077204897758033}
+  damage: {fileID: 8300000, guid: 7804fa745934b4581bbc758e0d0ec160, type: 3}
+  bigExplosion: {fileID: 8300000, guid: 6bd6c2face2004c8e9ea34cc252390af, type: 3}
+  BGM: {fileID: 0}
+  winner: {fileID: 0}
 --- !u!54 &-5027118464693669877
 Rigidbody:
   m_ObjectHideFlags: 0

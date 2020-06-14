@@ -51,21 +51,29 @@ public class MovingCameraScript : MonoBehaviour
         var bounds = new Bounds(targets[0].position, Vector3.zero);
         for (int i = 0; i < targets.Count; i++)
         {
-            bounds.Encapsulate(targets[i].position);
+            if (targets[i] != null)
+            {
+                bounds.Encapsulate(targets[i].position);
+
+            }
         }
         return bounds.size.magnitude;
     }
 
     Vector3 GetCenterPoint()
     {
-        if (targets.Count ==1)
+        if (targets.Count == 1)
         {
             return targets[0].position;
         }
         var bounds = new Bounds(targets[0].position, Vector3.zero);
         for (int i = 0; i < targets.Count; i++)
         {
-            bounds.Encapsulate(targets[i].position);
+            if (targets[i] != null)
+            {
+                bounds.Encapsulate(targets[i].position);
+            }
+           
         }
 
         return bounds.center;

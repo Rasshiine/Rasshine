@@ -7,6 +7,7 @@ public class RobotScript : MonoBehaviour
     UnityEngine.AI.NavMeshAgent agent;
     GameObject player;
     public string targetName;
+    public GameObject explosion;
 
 
     // Start is called before the first frame update
@@ -20,5 +21,12 @@ public class RobotScript : MonoBehaviour
     void Update()
     {
         agent.SetDestination(player.transform.position);
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag != "Untagged")
+            Destroy(gameObject);
+        Instantiate(explosion, transform.position, transform.rotation);
     }
 }
