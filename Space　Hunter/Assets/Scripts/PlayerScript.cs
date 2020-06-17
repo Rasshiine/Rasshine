@@ -7,7 +7,7 @@ using DG.Tweening;
 
 public class PlayerScript : MonoBehaviour
 {
-    bool isPlaying = false;
+    public bool isPlaying = false;
     public Text countDownText;
 
     public GameObject straightBullet;
@@ -52,8 +52,6 @@ public class PlayerScript : MonoBehaviour
     public Image[] imageArray = new Image[5];
     public Sprite[] imageResources = new Sprite[5];
     public int[] keys = new int[3];
-    //public int slashKey; 
-    //public int underBarKey;
     
     public Text winnerLabel;
     public Slider HPSlider;
@@ -65,11 +63,12 @@ public class PlayerScript : MonoBehaviour
     public AudioClip countDown1;
     public AudioClip countDown2;
     public AudioClip damage;
-    public AudioClip bigExplosion;
-    public AudioClip BGM;
+    //public AudioClip bigExplosion;
+    //public AudioClip BGM;
     public AudioClip winner;
     bool BGMPlay = true;
-    bool explosionPlay = true;
+    public bool explosionPlay = false;
+    public bool isGameSet = false;
 
     private AudioSource audioSource;
 
@@ -81,7 +80,10 @@ public class PlayerScript : MonoBehaviour
         playerRb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
         HPSlider.maxValue = HP;
-        HPSlider.value = HP;
+        HPSlider.value = 0.1f;
+        
+        HPSlider.DOValue(20, 3.0f);
+        HP = 20f;
         MPSlider.maxValue = maxMP;
         MPSlider.value = 0f;
         HPRotation = HPSlider.transform.rotation;
@@ -129,11 +131,6 @@ public class PlayerScript : MonoBehaviour
         if (isPlaying == false)
             return;
 
-        if (BGMPlay == true)
-        {
-            audioSource.PlayOneShot(BGM);
-            BGMPlay = false;
-        }
         HPLabel.text = HP.ToString("f0");
         MPLabel.text = currentMP.ToString("f0");
         //CountTime += Time.deltaTime;
@@ -220,13 +217,9 @@ public class PlayerScript : MonoBehaviour
 
         if (HP <= 0)
         {
-            //Invoke("Load", 1.0f);
             HP = 0;
-            if (explosionPlay == true)
-            {
-                audioSource.PlayOneShot(bigExplosion);
-                explosionPlay = false;
-            }
+            explosionPlay = true;
+            isGameSet = true;
             
             this.winnerLabel.gameObject.SetActive(true);
 
@@ -237,7 +230,7 @@ public class PlayerScript : MonoBehaviour
 
             //isPlaying = false;
             //gameObject.SetActive(false);
-            Invoke("Explode", 2.0f);
+            //Invoke("Explode", 2.0f);
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 SceneManager.LoadScene("StartScene");
@@ -247,6 +240,7 @@ public class PlayerScript : MonoBehaviour
         if (isInshadow == true)
         {
             HP -= 0.05f;
+            HPSlider.value = HP;
         }
     }
 
@@ -254,8 +248,11 @@ public class PlayerScript : MonoBehaviour
     {
         Destroy(this.gameObject);
     }
+
     private void FixedUpdate()
     {
+        if (isPlaying == false)
+            return;
         currentMP += chargeSpeed * Time.fixedDeltaTime;
     }
 

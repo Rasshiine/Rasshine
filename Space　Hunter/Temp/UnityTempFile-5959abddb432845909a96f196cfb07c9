@@ -428,6 +428,7 @@
 "Assets/Scripts/BulletScripts/RobotScript.cs"
 "Assets/Scripts/BulletScripts/StraightBulletScript.cs"
 "Assets/Scripts/BulletScripts/TripleBulletScript.cs"
+"Assets/Scripts/EmptyScript.cs"
 "Assets/Scripts/EndScript.cs"
 "Assets/Scripts/FadeScript.cs"
 "Assets/Scripts/MovingCameraScript.cs"

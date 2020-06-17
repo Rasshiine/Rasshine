@@ -10,16 +10,27 @@ public class MovingCameraScript : MonoBehaviour
     public Vector3 offset;
     public float smoothTime = 0.5f;
 
-    public float minZoom = 60f;
+    public float minZoom = 200f;
     public float maxZoom = 10f;
     public float zoomLimiter = 50f;
 
     private Vector3 velocity;
     private Camera cam;
 
+    public PlayerScript playerScript1;
+    public PlayerScript playerScript2;
+
+    public bool isGameSet1;
+    public bool isGameSet2;
     void Start()
     {
         cam = GetComponent<Camera>();
+    }
+
+    void Update()
+    {
+         isGameSet1 = playerScript1.isGameSet;
+         isGameSet2 = playerScript2.isGameSet;
     }
 
     void LateUpdate()
@@ -63,6 +74,15 @@ public class MovingCameraScript : MonoBehaviour
     Vector3 GetCenterPoint()
     {
         if (targets.Count == 1)
+        {
+            return targets[0].position;
+        }
+
+        if (isGameSet1 == true)
+        {
+            return targets[1].position;
+        }
+        else if (isGameSet2 == true)
         {
             return targets[0].position;
         }
