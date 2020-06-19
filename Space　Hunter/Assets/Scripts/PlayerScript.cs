@@ -15,6 +15,7 @@ public class PlayerScript : MonoBehaviour
     public GameObject bomb;
     public GameObject robot1;
     public GameObject robot2;
+    public GameObject explosion;
 
     float straightBulletDamage = 3.0f;
     float curveBulletDamage = 3.0f;
@@ -39,7 +40,7 @@ public class PlayerScript : MonoBehaviour
 
     public float shotMP = 2.0f;
     public float curveShotMP = 3.0f;
-    public float tripleShotMP = 4.0f;
+    public float tripleShotMP = 5.0f;
     public float bombMP = 4.0f;
     public float robotMP = 8.0f;
 
@@ -47,6 +48,7 @@ public class PlayerScript : MonoBehaviour
     public float hitTime = 0.5f;
     public float forcePower = 100;
     public int id;
+
     public int nextAttack;
     public Image nextAttackImage;
     public Image[] imageArray = new Image[5];
@@ -58,17 +60,17 @@ public class PlayerScript : MonoBehaviour
     public Slider MPSlider;
     Rigidbody playerRb;
     Quaternion HPRotation;
-    bool isInshadow = false;
+    bool isInShadow = false;
 
     public AudioClip countDown1;
     public AudioClip countDown2;
     public AudioClip damage;
-    //public AudioClip bigExplosion;
+    public AudioClip bigExplosion;
     //public AudioClip BGM;
     public AudioClip winner;
-    bool BGMPlay = true;
-    public bool explosionPlay = false;
+    public bool explosionPlay = true;
     public bool isGameSet = false;
+    public GameObject UFO;
 
     private AudioSource audioSource;
 
@@ -88,8 +90,6 @@ public class PlayerScript : MonoBehaviour
         MPSlider.value = 0f;
         HPRotation = HPSlider.transform.rotation;
         StartCoroutine(CountDown());
-
-        
         this.winnerLabel.gameObject.SetActive(false);
 
         for (int i = 0; i < 3; i++)
@@ -128,23 +128,24 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isPlaying == false)
+        if (isPlaying == false || isGameSet == true)
             return;
 
         HPLabel.text = HP.ToString("f0");
         MPLabel.text = currentMP.ToString("f0");
         //CountTime += Time.deltaTime;
         //Debug.Log(currentMP);
-        MPSlider.value = currentMP; 
-       // HPSlider.value = HP;
+        MPSlider.value = currentMP;
+        // HPSlider.value = HP;
         HPSlider.transform.rotation = HPRotation;
         if (currentMP >= maxMP)
         {
             currentMP = maxMP;
         }
 
-         //ノックバックの処理
-        if (hitTime >= 0.5f){
+        //ノックバックの処理
+        if (hitTime >= 0.5f)
+        {
             float inputX = (Input.GetAxis("Horizontal" + id));
             transform.Rotate(0, inputX * Time.deltaTime * 100, 0);
 
@@ -201,8 +202,8 @@ public class PlayerScript : MonoBehaviour
                         }
                         break;
                 }
-               
-                
+
+
             }
             void ChangeImage()
             {
@@ -218,16 +219,23 @@ public class PlayerScript : MonoBehaviour
         if (HP <= 0)
         {
             HP = 0;
-            explosionPlay = true;
             isGameSet = true;
-            
             this.winnerLabel.gameObject.SetActive(true);
+            UFO.SetActive(false);
+            GameObject obj = Instantiate(explosion, transform.position, transform.rotation) as GameObject;
+            if(explosionPlay == true)
+                {
+                audioSource.PlayOneShot(bigExplosion);
+                explosionPlay = false;
+                }
 
-            if (id == 1)  
+
+            if (id == 1)
                 winnerLabel.text = "P2win";
-            else 
+            else
                 winnerLabel.text = "P1win";
 
+            this.gameObject.SetActive(false);
             //isPlaying = false;
             //gameObject.SetActive(false);
             //Invoke("Explode", 2.0f);
@@ -237,16 +245,11 @@ public class PlayerScript : MonoBehaviour
             }
         }
 
-        if (isInshadow == true)
+        if (isInShadow == true)
         {
             HP -= 0.05f;
             HPSlider.value = HP;
         }
-    }
-
-    void Explode()
-    {
-        Destroy(this.gameObject);
     }
 
     private void FixedUpdate()
@@ -370,11 +373,14 @@ public class PlayerScript : MonoBehaviour
     }
 
     void Damage() {
-        hitTime = 0;
-        //HP--;
-        audioSource.PlayOneShot(damage);
-        HPSlider.DOValue(HP, 2.0f);
-        HPLabel.gameObject.transform.DOShakePosition(0.3f, 10, 10, 90, false, true);
+        if (HP > 0)
+        {
+            hitTime = 0;
+            //HP--;
+            audioSource.PlayOneShot(damage);
+            HPSlider.DOValue(HP, 2.0f);
+            HPLabel.gameObject.transform.DOShakePosition(0.3f, 10, 10, 90, false, true);
+        }
     }
 
     private void OnTriggerStay(Collider other)
@@ -382,7 +388,7 @@ public class PlayerScript : MonoBehaviour
        
         if (other.gameObject.tag == "Sphere")
             { 
-                isInshadow = false;
+                isInShadow = false;
             }
 
     }
@@ -390,7 +396,7 @@ public class PlayerScript : MonoBehaviour
     {
         if (other.gameObject.tag == "Sphere")
         {
-            isInshadow = true;
+            isInShadow = true;
         }
     }
 }

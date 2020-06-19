@@ -26,7 +26,10 @@ public class RobotScript : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.tag != "Untagged")
+        {
+            Debug.Log("ぶつかった");
             Destroy(gameObject);
-        Instantiate(explosion, transform.position, transform.rotation);
+            Instantiate(explosion, transform.position, transform.rotation);
+        }
     }
 }

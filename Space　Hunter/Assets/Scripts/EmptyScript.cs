@@ -12,7 +12,7 @@ public class EmptyScript : MonoBehaviour
     AudioSource audioSource;
 
     public AudioClip BGM;
-    public AudioClip bigExplosion;
+   // public AudioClip bigExplosion;
 
 
     // Start is called before the first frame update
@@ -31,11 +31,12 @@ public class EmptyScript : MonoBehaviour
             BGMPlay = false;
         }
 
-        explosionPlay = playerScript.explosionPlay;
+       /* explosionPlay = playerScript.explosionPlay;
         if (explosionPlay == true && explosionAudio == true)
         {
             audioSource.PlayOneShot(bigExplosion);
             explosionAudio = false;
         }
+        */
     }
 }
