@@ -31,7 +31,7 @@ public class PlayerScript : MonoBehaviour
     public float bulletSpeed = 5.0f;
     public float HP = 5;
     public float maxMP = 10;
-    public float currentMP = 0;
+    float currentMP = 10;
     public Text HPLabel;
     public Text MPLabel;
     public float DurationSeconds;
@@ -44,7 +44,7 @@ public class PlayerScript : MonoBehaviour
     public float bombMP = 4.0f;
     public float robotMP = 8.0f;
 
-    public float chargeSpeed = 3.0f;
+    float chargeSpeed = 2.0f;
     public float hitTime = 0.5f;
     public float forcePower = 100;
     public int id;
@@ -71,7 +71,7 @@ public class PlayerScript : MonoBehaviour
     public bool explosionPlay = true;
     public bool isGameSet = false;
     public GameObject UFO;
-
+    public GameObject light;
     private AudioSource audioSource;
 
     //float CountTime = 0.0f;
@@ -88,6 +88,8 @@ public class PlayerScript : MonoBehaviour
         HP = 20f;
         MPSlider.maxValue = maxMP;
         MPSlider.value = 0f;
+        MPSlider.DOValue(10, 3.0f);
+
         HPRotation = HPSlider.transform.rotation;
         StartCoroutine(CountDown());
         this.winnerLabel.gameObject.SetActive(false);
@@ -222,6 +224,7 @@ public class PlayerScript : MonoBehaviour
             isGameSet = true;
             this.winnerLabel.gameObject.SetActive(true);
             UFO.SetActive(false);
+            light.SetActive(false);
             GameObject obj = Instantiate(explosion, transform.position, transform.rotation) as GameObject;
             if(explosionPlay == true)
                 {
@@ -235,7 +238,7 @@ public class PlayerScript : MonoBehaviour
             else
                 winnerLabel.text = "P1win";
 
-            this.gameObject.SetActive(false);
+            //this.gameObject.SetActive(false);
             //isPlaying = false;
             //gameObject.SetActive(false);
             //Invoke("Explode", 2.0f);

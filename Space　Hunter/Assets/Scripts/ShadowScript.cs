@@ -6,7 +6,7 @@ using DG.Tweening;
 public class ShadowScript : MonoBehaviour
 {
     public string objectName;
-    public float convergenceTime = 120;
+    float convergenceTime = 60;
     // Start is called before the first frame update
     void Start()
     {
